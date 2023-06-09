@@ -1,58 +1,102 @@
 using FluentAssertions;
+using ShippingCostsCalculator;
 
 namespace unitTestAvans
 {
     public class UnitTest1
     {
+
+        ClassAssignmentAvans _classAssignmentAvans = new ClassAssignmentAvans();
+
         [Fact]
-        public void calculateShippingCostsIsFalse()
+        public void WhenCalculateShippingCostsIsFalse_ReturnsZero()
         {
-            // Customer Object with null Id property
-            var shippingCosts = ShippingCosts(false, "ground", 50);
-            // Asserts that calling GetId() will throw
+            // Arrange
+            bool calculateShippingCosts = false;
+            string typeOfShippingCosts = "Ground";
+            double totalPrice = 1000;
 
-            shippingCosts.Should().Be(0);
+            // Act
+            double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
+
+            // Assert
+            result.Should().Be(0);
         }
 
-
-     
-        public double ShippingCosts(bool calculateShippingCosts, string typeOfShippingCosts, double totalPrice)
+        [Fact]
+        public void WhenCalculateShippingCostsIsTrueAndTotalPriceIsGreaterThan1500_ReturnsZero()
         {
-            double result = 0;
-            if (calculateShippingCosts == true)
-            {
-                if (totalPrice > 1500)
-                {
-                    result = 0;
-                }
-                else
-                {
-                    switch (typeOfShippingCosts)
-                    {
-                        case "Ground":
-                            result = 100;
-                            break;
-                        case "InStore":
-                            result = 50;
-                            break;
-                        case "NextDayAir":
-                            result = 250;
-                            break;
-                        case "SecondDayAir":
-                            result = 125;
-                            break;
-                        default:
-                            result = 0;
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                result = 0;
-            }
-            return result;
+            // Arrange
+            bool calculateShippingCosts = true;
+            string typeOfShippingCosts = "Ground";
+            double totalPrice = 2000;
+
+            // Act
+            double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
+
+            // Assert
+            result.Should().Be(0);
         }
-    }
-    
+
+        [Fact]
+        public void WhenCalculateShippingCostsIsTrueAndTotalPriceIsLessThanOrEqualTo1500AndTypeOfShippingCostsIsGround_Returns100()
+        {
+            // Arrange
+            bool calculateShippingCosts = true;
+            string typeOfShippingCosts = "Ground";
+            double totalPrice = 1000;
+
+            // Act
+            double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
+
+            // Assert
+            result.Should().Be(100);
+        }
+
+        [Fact]
+        public void WhenCalculateShippingCostsIsTrueAndTotalPriceIsLessThanOrEqualTo1500AndTypeOfShippingCostsIsInStore_Returns50()
+        {
+            // Arrange
+            bool calculateShippingCosts = true;
+            string typeOfShippingCosts = "InStore";
+            double totalPrice = 1000;
+
+            // Act
+            double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
+
+            // Assert
+            result.Should().Be(50);
+        }
+
+        [Fact]
+        public void WhenCalculateShippingCostsIsTrueAndTotalPriceIsLessThanOrEqualTo1500AndTypeOfShippingCostsIsNextDayAir_Returns250()
+        {
+            // Arrange
+            bool calculateShippingCosts = true;
+            string typeOfShippingCosts = "NextDayAir";
+            double totalPrice = 1000;
+
+            // Act
+            double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
+
+            // Assert
+            result.Should().Be(250);
+        }
+
+        [Fact]
+        public void WhenCalculateShippingCostsIsTrueAndTotalPriceIsLessThanOrEqualTo1500AndTypeOfShippingCostsIsSecondDayAir_Returns125()
+        {
+            // Arrange
+            bool calculateShippingCosts = true;
+            string typeOfShippingCosts = "SecondDayAir";
+            double totalPrice = 1000;
+
+            // Act
+            double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
+
+            // Assert
+            result.Should().Be(125);
+        }
+
+    }   
 }
