@@ -10,7 +10,6 @@ namespace ShippingCostsCalculator
     {
         public double ShippingCosts(bool calculateShippingCosts, string typeOfShippingCosts, double totalPrice)
         {
-            Console.WriteLine("doobedoo");
             double result = 0;
             if (calculateShippingCosts == true)
             {
