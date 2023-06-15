@@ -16,7 +16,7 @@ namespace unitTestAvans
             string typeOfShippingCosts = "Ground";
             double totalPrice = 1000;
 
-            // Act
+            // Act2222
             double result = _classAssignmentAvans.ShippingCosts(calculateShippingCosts, typeOfShippingCosts, totalPrice);
 
             // Assert
